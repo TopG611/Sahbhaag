@@ -1,0 +1,2313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Sahbhaag</title>
+<style>
+  :root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #8b5cf6;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --border: rgba(15, 23, 42, 0.08);
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    --radius: 16px;
+    --glass: rgba(255, 255, 255, 0.9);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .app-container {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: var(--bg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header */
+  .app-header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+
+  .header-title h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .header-title p {
+    font-size: 12px;
+    opacity: 0.9;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .icon-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.2s;
+  }
+
+  .icon-btn:active {
+    transform: scale(0.95);
+  }
+
+  /* Main Content */
+  .app-body {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    padding-bottom: 80px;
+    position: relative;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+  }
+.screen {
+  display: none;
+}
+.screen.active {
+  display: block;
+  opacity: 1;
+  transform: none;
+  position: relative;
+}
+
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+
+  .card-title {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Balance Card */
+  .balance-card {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+  }
+
+  .balance-amount {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 12px 0;
+  }
+
+  .balance-label {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 8px;
+  }
+
+  .verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  /* Stats Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    opacity: 0.9;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-height: 48px;
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  }
+
+  .btn-secondary {
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+  }
+
+  .btn-ghost {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  .btn-block {
+    width: 100%;
+  }
+
+  /* Transaction List */
+  .transaction-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .transaction-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background: var(--bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .transaction-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .transaction-icon.positive {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+  }
+
+  .transaction-icon.negative {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+  }
+
+  .transaction-info {
+    flex: 1;
+    margin-left: 12px;
+  }
+
+  .transaction-type {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  .transaction-date {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .transaction-hash {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-family: monospace;
+    margin-top: 4px;
+  }
+
+  .transaction-amount {
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .transaction-amount.positive {
+    color: var(--success);
+  }
+
+  .transaction-amount.negative {
+    color: var(--danger);
+  }
+
+  /* Loan Section */
+  .eligibility-score {
+    text-align: center;
+    padding: 24px;
+  }
+
+  .score-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--success), #059669);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: white;
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+  }
+
+  .score-value {
+    font-size: 48px;
+    font-weight: 700;
+  }
+
+  .score-label {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+
+  .loan-details {
+    background: var(--bg);
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 16px;
+  }
+
+  .loan-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .loan-detail-row:last-child {
+    border-bottom: none;
+  }
+
+  .loan-detail-label {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .loan-detail-value {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  /* Loan Dashboard */
+  .loan-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .tab-btn {
+    padding: 8px 16px;
+    border: none;
+    background: var(--bg);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex: 1;
+    text-align: center;
+  }
+
+  .tab-btn.active {
+    background: var(--primary);
+    color: white;
+  }
+
+  .loan-status-card {
+    background: var(--bg);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+
+  .status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .status-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .status-badge.active {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+  }
+
+  .status-badge.completed {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary);
+  }
+
+  /* Form Elements */
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 14px;
+    transition: all 0.2s;
+    background: white;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  }
+
+  .form-radio-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .form-radio {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  .form-radio input {
+    margin: 0;
+  }
+
+  /* Learning Hub */
+  .lesson-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .lesson-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .lesson-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .lesson-info {
+    flex: 1;
+  }
+
+  .lesson-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .lesson-duration {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* Community Posts & Groups */
+/* Community grid layout */
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  justify-items: center;
+}
+
+.community-btn {
+  background: var(--card-bg);
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.community-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.community-avatar {
+  background: var(--accent);
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.community-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+}
+
+
+  .post-card, .group-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .group-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-header, .group-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .post-avatar, .group-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .post-author, .group-info {
+    flex: 1;
+  }
+
+  .post-name, .group-name {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .post-time, .group-members {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .post-content, .group-description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  /* Chat Screen */
+
+  
+  .chat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    margin: -16px -16px 16px -16px;
+  }
+
+  .back-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: var(--bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .chat-messages {
+    flex: 1;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 16px 0;
+    margin-bottom: 16px;
+  }
+
+  .message {
+    display: flex;
+    margin-bottom: 12px;
+  }
+
+  .message.own {
+    justify-content: flex-end;
+  }
+
+  .message-bubble {
+    max-width: 70%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .message.own .message-bubble {
+    background: var(--primary);
+    color: white;
+    border-bottom-right-radius: 4px;
+  }
+
+  .message:not(.own) .message-bubble {
+    background: var(--bg);
+    border-bottom-left-radius: 4px;
+  }
+
+  .chat-input-area {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 12px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .chat-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 8px 0;
+  }
+
+  .send-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  /* Modals */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+  }
+
+  .modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 90%;
+    width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: scale(0.9);
+    transition: transform 0.3s;
+  }
+
+  .modal-overlay.show .modal-content {
+    transform: scale(1);
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .modal-title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .close-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: var(--bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .notification-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--bg);
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
+  .notification-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .notification-content {
+    flex: 1;
+  }
+
+  .notification-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .notification-time {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* Record Transaction FAB */
+  .record-fab {
+    position: fixed;
+    bottom: 160px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: var(--success);
+    border: none;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .record-fab:active {
+    transform: scale(0.95);
+  }
+
+  /* Bottom Navigation */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    background: white;
+    border-top: 1px solid var(--border);
+    display: flex;
+    padding: 8px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    gap: 4px;
+    min-height: 64px;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  .nav-item:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+
+  .nav-item.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  }
+  
+  .nav-item.active .nav-icon,
+  .nav-item.active .nav-label {
+    color: white;
+  }
+
+  .nav-icon {
+    font-size: 22px;
+    transition: transform 0.2s;
+  }
+
+  .nav-label {
+    font-size: 11px;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  /* Voice Assistant Panel */
+  .voice-panel {
+    position: fixed;
+    bottom: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    background: white;
+    border-radius: 24px 24px 0 0;
+    padding: 24px;
+    box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.2);
+    transition: bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  .voice-panel.open {
+    bottom: 0;
+  }
+
+  .voice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .voice-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .didi-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  .didi-info h3 {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+
+  .didi-info p {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .waveform {
+    height: 60px;
+    background: var(--bg);
+    border-radius: 12px;
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px;
+  }
+
+  .wave-bar {
+    width: 4px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 2px;
+    transition: height 0.1s;
+  }
+
+  .voice-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .voice-controls .btn {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .transcript-box {
+    background: var(--bg);
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 16px;
+    min-height: 80px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(15, 23, 42, 0.95);
+    color: white;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    opacity: 0;
+    transition: all 0.3s;
+    max-width: 90%;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .toast.success {
+    background: var(--success);
+  }
+
+  .toast.error {
+    background: var(--danger);
+  }
+
+  /* FAB */
+  .fab {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border: none;
+    color: white;
+    font-size: 28px;
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fab:active {
+    transform: scale(0.95);
+  }
+
+  /* Loading Skeleton */
+  .skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 8px;
+  }
+
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .skeleton-text {
+    height: 16px;
+    margin-bottom: 8px;
+  }
+
+  .skeleton-title {
+    height: 24px;
+    width: 60%;
+    margin-bottom: 16px;
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+
+
+    #dashboardScreen {
+    padding-bottom: 100px;
+   }
+    .app-body {
+      padding: 12px;
+    }
+
+    
+    
+    .balance-amount {
+      font-size: 32px;
+    }
+  }
+
+  /* Utility Classes */
+  .mt-1 { margin-top: 8px; }
+  .mt-2 { margin-top: 16px; }
+  .mt-3 { margin-top: 24px; }
+  .mb-1 { margin-bottom: 8px; }
+  .mb-2 { margin-bottom: 16px; }
+  .mb-3 { margin-bottom: 24px; }
+  .text-center { text-align: center; }
+  .flex { display: flex; }
+  .flex-col { flex-direction: column; }
+  .gap-1 { gap: 8px; }
+  .gap-2 { gap: 16px; }
+  .items-center { align-items: center; }
+  .justify-between { justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="logo">🔐</div>
+      <div class="header-title">
+        <h1>Sahbhaag</h1>
+        <p id="userName">Welcome, Sunita</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="notificationBtn" title="Notifications">🔔</button>
+      <button class="icon-btn" id="settingsBtn" title="Settings">⚙️</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="app-body">
+    <!-- Dashboard Screen -->
+    <div id="dashboardScreen" class="screen active" style="padding-bottom:80px;">
+      <!-- Balance Card -->
+      <div class="card balance-card">
+        <div class="balance-label">Your Total Savings</div>
+        <div class="balance-amount" id="balanceAmount">₹5,000</div>
+        <div class="verified-badge">
+          <span>✓</span>
+          <span>Verified on Blockchain</span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value" id="contributionCount">12</div>
+            <div class="stat-label">Contributions</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="groupTotal">₹8,500</div>
+            <div class="stat-label">Group Total</div>
+          </div>
+        </div>
+        <div class="mt-2 flex gap-1">
+          <button class="btn btn-ghost btn-block" id="applyLoanBtn">Apply for Loan</button>
+          <button class="btn btn-ghost btn-block" id="askDidiBtn">Ask Didi</button>
+        </div>
+      </div>
+
+      <!-- Recent Transactions -->
+      <div class="card">
+        <h3 class="card-title">Recent Transactions</h3>
+        <div class="transaction-list" id="transactionList">
+          <!-- Transactions will be populated here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Loan Screen -->
+    <div id="loanScreen" class="screen">
+      <!-- Loan Tabs -->
+      <div class="loan-tabs">
+        <button class="tab-btn active" data-tab="eligibility">Eligibility</button>
+        <button class="tab-btn" data-tab="dashboard">Dashboard</button>
+        <button class="tab-btn" data-tab="apply">Apply</button>
+      </div>
+
+      <!-- Eligibility Tab -->
+      <div id="eligibilityTab" class="tab-content">
+        <div class="card">
+          <h3 class="card-title">Loan Eligibility</h3>
+          <div class="eligibility-score">
+            <div class="score-circle">
+              <div class="score-value" id="eligibilityScore">85</div>
+              <div class="score-label">Eligibility</div>
+            </div>
+            <h3 style="margin-bottom: 8px;">You're Eligible!</h3>
+            <p style="font-size: 14px; color: var(--text-muted);">
+              Based on your contribution history and repayment behavior
+            </p>
+          </div>
+
+          <div class="loan-details">
+            <div class="loan-detail-row">
+              <span class="loan-detail-label">Total Contributions</span>
+              <span class="loan-detail-value" id="loanContrib">12 months</span>
+            </div>
+            <div class="loan-detail-row">
+              <span class="loan-detail-label">Total Savings</span>
+              <span class="loan-detail-value" id="loanSavings">₹5,000</span>
+            </div>
+            <div class="loan-detail-row">
+              <span class="loan-detail-label">Max Loan Amount</span>
+              <span class="loan-detail-value" style="color: var(--primary);" id="maxLoan">₹15,000</span>
+            </div>
+            <div class="loan-detail-row">
+              <span class="loan-detail-label">Interest Rate</span>
+              <span class="loan-detail-value">8% p.a.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Tab -->
+      <div id="dashboardTab" class="tab-content" style="display: none;">
+        <!-- Current Loans -->
+        <div class="card">
+          <h3 class="card-title">Current Loans</h3>
+          <div id="currentLoans">
+            <div class="loan-status-card">
+              <div class="status-header">
+                <div>
+                  <div style="font-weight: 600; font-size: 16px;">Loan #L001</div>
+                  <div style="font-size: 12px; color: var(--text-muted);">₹10,000 • 8% p.a.</div>
+                </div>
+                <div class="status-badge active">Active</div>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 14px;">Remaining</span>
+                <span style="font-weight: 600;">₹7,200</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 14px;">Next EMI</span>
+                <span style="font-weight: 600; color: var(--warning);">₹850 on Nov 15</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-size: 14px;">Due in</span>
+                <span style="font-weight: 600;">31 days</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loan History -->
+        <div class="card">
+          <h3 class="card-title">Loan History</h3>
+          <div id="loanHistory">
+            <div class="loan-status-card">
+              <div class="status-header">
+                <div>
+                  <div style="font-weight: 600; font-size: 16px;">Loan #L000</div>
+                  <div style="font-size: 12px; color: var(--text-muted);">₹5,000 • Completed in Jan 2024</div>
+                </div>
+                <div class="status-badge completed">Completed</div>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-size: 14px;">Total Paid</span>
+                <span style="font-weight: 600; color: var(--success);">₹5,320</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Apply Tab -->
+      <div id="applyTab" class="tab-content" style="display: none;">
+        <div class="card">
+          <h3 class="card-title">Apply for Loan</h3>
+          <form id="loanForm">
+            <div class="form-group">
+              <label class="form-label">Loan Amount (₹)</label>
+              <input type="number" class="form-input" id="loanAmountInput" placeholder="Enter amount" max="15000" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Purpose</label>
+              <input type="text" class="form-input" id="loanPurposeInput" placeholder="e.g., Small business expansion" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit Application</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Learning Hub Screen -->
+    <div id="learnScreen" class="screen">
+      <div class="card">
+        <h3 class="card-title">Learning Hub</h3>
+        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">
+          Enhance your financial knowledge with our audio-visual lessons
+        </p>
+        <div id="lessonList">
+          <!-- Lessons will be populated here -->
+        </div>
+      </div>
+    </div>
+
+<!-- Community Screen -->
+<div id="communityScreen" class="screen">
+  <div class="card">
+    <h3 class="card-title">Community Groups</h3>
+    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">
+      Join groups based on your region, language, and interests
+    </p>
+    <div id="communityGroups" class="community-grid">
+      <!-- Groups will be populated here -->
+    </div>
+  </div>
+</div>
+
+<!-- Groups List Screen -->
+<div id="groupsScreen" class="screen">
+  <div class="card">
+    <div class="chat-header">
+      <button class="back-btn" id="backToCommunity">←</button>
+      <div class="group-info">
+        <div class="group-name" id="selectedGroupName">Group Name</div>
+        <div class="group-members" id="selectedGroupMembers">45 members</div>
+      </div>
+    </div>
+    <div id="groupPosts">
+      <!-- Group posts will be populated here -->
+    </div>
+  </div>
+</div>
+
+<!-- Individual Chat Screen -->
+<div id="chatScreen" class="screen">
+  <div class="chat-header">
+    <button class="back-btn" id="backToGroups">←</button>
+    <div class="group-info">
+      <div class="group-name" id="chatGroupName">Group Chat</div>
+      <div class="group-members" id="chatGroupMembers">Online now</div>
+    </div>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <!-- Chat messages will be populated here -->
+  </div>
+  <div class="chat-input-area">
+    <input type="text" class="chat-input" id="chatInput" placeholder="Type a message...">
+    <button class="send-btn" id="sendMessage">→</button>
+  </div>
+</div>
+
+
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <div class="nav-item active" data-screen="dashboard">
+      <div class="nav-icon">🏠</div>
+      <div class="nav-label">Home</div>
+    </div>
+    <div class="nav-item" data-screen="loan">
+      <div class="nav-icon">💰</div>
+      <div class="nav-label">Loans</div>
+    </div>
+    <div class="nav-item" data-screen="learn">
+      <div class="nav-icon">📚</div>
+      <div class="nav-label">Learn</div>
+    </div>
+    <div class="nav-item" data-screen="community">
+      <div class="nav-icon">👥</div>
+      <div class="nav-label">Community</div>
+    </div>
+  </nav>
+</div>
+
+<button class="fab" id="voiceFab" >
+  <img src="mic.jpg" alt="Mic" style="width:65px; height:65px; border-radius:35%;">
+</button>
+
+<button class="record-fab" id="recordFab">+</button>
+
+<!-- Modals -->
+
+<!-- Settings Modal -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Settings</h2>
+      <button class="close-btn" id="closeSettings">✕</button>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Full Name</label>
+      <input type="text" class="form-input" id="settingsName" value="Sunita Devi">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Phone Number</label>
+      <input type="tel" class="form-input" id="settingsPhone" value="9876543210">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Language Preference</label>
+      <select class="form-input" id="settingsLanguage">
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="bn">Bengali</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Notifications</label>
+      <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+        <input type="checkbox" id="notificationsEnabled" checked>
+        <label for="notificationsEnabled" style="font-size: 14px;">Enable notifications</label>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-block" id="saveSettings">Save Changes</button>
+  </div>
+</div>
+
+<!-- Notifications Modal -->
+<div class="modal-overlay" id="notificationsModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Notifications</h2>
+      <button class="close-btn" id="closeNotifications">✕</button>
+    </div>
+    <div id="notificationsList">
+      <!-- Notifications will be populated here -->
+    </div>
+  </div>
+</div>
+
+<!-- Record Transaction Modal -->
+<div class="modal-overlay" id="recordTransactionModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Record Transaction</h2>
+      <button class="close-btn" id="closeRecordTransaction">✕</button>
+    </div>
+    <form id="recordTransactionForm">
+      <div class="form-group">
+        <label class="form-label">Transaction Type</label>
+        <div class="form-radio-group">
+          <div class="form-radio">
+            <input type="radio" id="savingType" name="transactionType" value="saving" checked>
+            <label for="savingType">Saving Deposit</label>
+          </div>
+          <div class="form-radio">
+            <input type="radio" id="repaymentType" name="transactionType" value="repayment">
+            <label for="repaymentType">Loan Repayment</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Amount (₹)</label>
+        <input type="number" class="form-input" id="transactionAmount" placeholder="Enter amount" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date</label>
+        <input type="date" class="form-input" id="transactionDate" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notes (Optional)</label>
+        <input type="text" class="form-input" id="transactionNotes" placeholder="Additional notes">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Record Transaction</button>
+    </form>
+  </div>
+</div>
+
+
+<!-- Voice Assistant Panel -->
+<div class="voice-panel" id="voicePanel">
+  <div class="voice-header">
+    <div class="voice-title">
+      <div class="didi-avatar">🗣️</div>
+      <div class="didi-info">
+        <h3>Digital Didi</h3>
+        <p>Your AI Voice Assistant</p>
+      </div>
+    </div>
+    <button class="icon-btn" id="closeVoiceBtn">✕</button>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Language</label>
+    <select class="form-input" id="languageSelect">
+      <option value="en">English (en-IN)</option>
+      <option value="hi">Hindi (hi-IN)</option>
+      <option value="bn">Bengali (bn-IN)</option>
+    </select>
+    <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+      Currently only English is available
+    </p>
+  </div>
+
+  <div class="waveform" id="waveform">
+    <!-- Wave bars will be generated here -->
+  </div>
+
+  <div class="voice-controls">
+    <button class="btn btn-primary" id="speakBalanceBtn">💰 Balance</button>
+    <button class="btn btn-primary" id="speakEligibilityBtn">📊 Eligibility</button>
+  </div>
+  
+  <div class="voice-controls">
+    <button class="btn btn-secondary" id="pauseBtn">⏸️ Pause</button>
+    <button class="btn btn-secondary" id="resumeBtn">▶️ Resume</button>
+    <button class="btn btn-secondary" id="stopBtn">⏹️ Stop</button>
+  </div>
+
+  <div class="form-group mt-2">
+    <label class="form-label">Custom Message</label>
+    <input type="text" class="form-input" id="customTextInput" placeholder="Type text for Didi to speak...">
+    <button class="btn btn-primary btn-block mt-1" id="speakCustomBtn">Speak</button>
+  </div>
+
+  <div class="transcript-box" id="transcript">
+    <p style="color: var(--text-muted); font-size: 12px;">Transcript will appear here...</p>
+  </div>
+</div>
+
+<!-- Lesson Modal -->
+<div class="modal-overlay" id="lessonModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title" id="lessonModalTitle">Lesson Title</h2>
+      <button class="close-btn" id="closeLessonModal">✕</button>
+    </div>
+    <p id="lessonModalDuration" style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">
+      Duration: 0 min
+    </p>
+    <div id="lessonModalText" style="font-size: 15px; line-height: 1.6; color: var(--text);"></div>
+  </div>
+</div>
+
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== Application State =====
+const state = {
+  currentUser: {
+    name: 'Sunita Devi',
+    phone: '9876543210',
+    email: 'sunita@example.com',
+    shgGroup: 'Asha Group',
+    totalSavings: 5000,
+    contributions: 12,
+    joinDate: '2024-01-15',
+    status: 'Active'
+  },
+  transactions: [
+  { id: 'TXN001', type: 'Saving', amount: 500, date: '2024-10-14', status: 'Completed', hash: '0x3a5f8b2c7d9e4f1a', positive: true },
+  { id: 'TXN002', type: 'Repayment', amount: -300, date: '2024-10-10', status: 'Completed', hash: '0x5d8f2c4a9e1b7f3c', positive: false },
+  { id: 'TXN003', type: 'Deposit', amount: 1000, date: '2024-10-05', status: 'Completed', hash: '0x7b9d3f2a1c5e6d8b', positive: true },
+  { id: 'TXN004', type: 'Loan Received', amount: 2000, date: '2024-09-30', status: 'Completed', hash: '0x8a4e9b7f2d3c1e6a', positive: true },
+  { id: 'TXN005', type: 'Saving', amount: 400, date: '2024-09-13', status: 'Completed', hash: '0x1e7a3d9c5f2b8e4a', positive: true },
+  { id: 'TXN006', type: 'Repayment', amount: -500, date: '2024-09-05', status: 'Completed', hash: '0x2f9a5b7e4c3d6f8a', positive: false },
+  { id: 'TXN007', type: 'Saving', amount: 300, date: '2024-08-28', status: 'Completed', hash: '0x9a4d3f7b5e2c1a8f', positive: true },
+  { id: 'TXN008', type: 'Withdrawal', amount: -200, date: '2024-08-15', status: 'Completed', hash: '0x6d2f9c3a8e5b4f1d', positive: false },
+  { id: 'TXN009', type: 'Saving', amount: 600, date: '2024-08-02', status: 'Completed', hash: '0x4b7d8f2e1c3a5b9f', positive: true },
+  { id: 'TXN010', type: 'Repayment', amount: -400, date: '2024-07-22', status: 'Completed', hash: '0x3c6a8d9e2b1f7c5d', positive: false },
+  { id: 'TXN011', type: 'Loan Received', amount: 1500, date: '2024-07-15', status: 'Completed', hash: '0x9b2d5a7c8f1e3g4h', positive: true },
+  { id: 'TXN012', type: 'Saving', amount: 450, date: '2024-06-30', status: 'Completed', hash: '0x8c5e1f9a3b2d6h7i', positive: true },
+  { id: 'TXN013', type: 'Withdrawal', amount: -250, date: '2024-06-20', status: 'Completed', hash: '0x2d6a4f8b1e3c7h9j', positive: false },
+  { id: 'TXN014', type: 'Deposit', amount: 800, date: '2024-06-05', status: 'Completed', hash: '0x7e3a9b2f6d5c4i1k', positive: true }
+ ],
+
+
+  loans: {
+    active: [
+      { id: 'L001', amount: 10000, remaining: 7200, nextEMI: { amount: 850, date: '2024-11-15' }, rate: 8 }
+    ],
+    history: [
+      { id: 'L000', amount: 5000, totalPaid: 5320, completedDate: '2024-01-15', status: 'Completed' }
+    ]
+  },
+  lessons: [
+  { id: 1, title: 'Understanding Savings', duration: '5 min', icon: '📊', content: 'Saving money regularly helps you build a financial cushion for emergencies and future goals.' },
+  { id: 2, title: 'Smart Borrowing Tips', duration: '7 min', icon: '💰', content: 'Only borrow what you need and can repay. Understand interest and repayment terms before borrowing.' },
+  { id: 3, title: 'Avoiding Financial Fraud', duration: '6 min', icon: '⚠️', content: 'Never share your OTP or password with anyone. Be cautious of schemes promising unrealistic returns.' },
+  { id: 4, title: 'Growing Your Business', duration: '8 min', icon: '📈', content: 'Keep records, start small, reinvest profits, and focus on customer satisfaction.' },
+  { id: 5, title: 'Banking Basics', duration: '5 min', icon: '🏦', content: 'Know the difference between savings and current accounts. Use fixed deposits and recurring deposits to save.' },
+  { id: 6, title: 'Digital Payments Made Easy', duration: '6 min', icon: '📱', content: 'Learn how to send and receive money safely using UPI apps like Google Pay or PhonePe. Always verify the receiver’s name before sending money.' }
+ ],
+  communityGroups: [
+  { id: 1, name: 'Jeevika Mahila Sangh', members: 58, region: 'Bihar', language: 'Hindi', description: 'Collective of rural women improving livelihoods through dairy and farming', avatar: 'J' },
+  { id: 2, name: 'Asha Mahila Group', members: 42, region: 'Madhya Pradesh', language: 'Hindi', description: 'Asha workers and local women supporting health awareness and microfinance', avatar: 'A' },
+  { id: 3, name: 'Shakti Gram Sangathan', members: 63, region: 'Rajasthan', language: 'Hindi', description: 'Empowering rural women through handicrafts and community savings', avatar: 'S' },
+  { id: 4, name: 'Maa Durga SHG', members: 49, region: 'Jharkhand', language: 'Hindi', description: 'Rural women uniting for handloom weaving and local entrepreneurship', avatar: 'D' },
+  { id: 5, name: 'Gramin Kisan Mahila Sangh', members: 53, region: 'Maharashtra', language: 'Marathi', description: 'Women farmers working together on organic farming and local produce markets', avatar: 'K' },
+  { id: 6, name: 'Rural Women Connect', members: 73, region: 'All India', language: 'Multilingual', description: 'Connecting women from rural areas for support and learning', avatar: 'R' },
+  { id: 7, name: 'Bihar Self Help Group', members: 54, region: 'Bihar', language: 'Hindi', description: 'Rural women from Bihar working together for small savings and business', avatar: 'B' },
+  { id: 8, name: 'Amma Self Help Group', members: 47, region: 'Tamil Nadu', language: 'Tamil', description: 'Rural women supporting each other through small enterprises and savings', avatar: 'A' },
+  { id: 9, name: 'Pragati Mahila Mandal', members: 61, region: 'Chhattisgarh', language: 'Hindi', description: 'Village women promoting thrift, education, and empowerment through local projects', avatar: 'P' },
+  { id: 10, name: 'Maa Saraswati SHG', members: 36, region: 'Uttar Pradesh', language: 'Hindi', description: 'Women’s self-help group supporting tailoring and small savings in local villages', avatar: 'S' }
+ ],
+
+  communityPosts: [
+    { name: 'Rekha Kumari', initial: 'R', time: '2 hours ago', content: 'I received loan approval in 24 hours. Blockchain made it transparent. Thank you DTC!' },
+    { name: 'Priya Sharma', initial: 'P', time: '1 day ago', content: 'The lessons helped me manage my small business better. Highly recommend!' },
+    { name: 'Meena Patel', initial: 'M', time: '2 days ago', content: 'Digital Didi is so helpful! She explains everything in simple language.' }
+  ],
+  currentGroup: null,
+chatMessages: [
+  { sender: 'Priya', message: 'Hello everyone! How is your business going?', time: '10:30 AM', own: false },
+  { sender: 'You', message: 'Going well! Just got a new order yesterday.', time: '10:35 AM', own: true },
+  { sender: 'Rekha', message: 'That\'s great! I also had good sales this week.', time: '10:40 AM', own: false },
+  { sender: 'Sita', message: 'Same here, festival season is helping a lot.', time: '10:42 AM', own: false },
+  { sender: 'Lata', message: 'Did anyone attend the new training session from Digital Didi?', time: '10:45 AM', own: false },
+  { sender: 'You', message: 'Yes! It was about managing savings. Very useful.', time: '10:47 AM', own: true },
+  { sender: 'Meena', message: 'I missed it. Is there a recording?', time: '10:48 AM', own: false },
+  { sender: 'Priya', message: 'Yes, check the app under Learning → Recorded Sessions.', time: '10:49 AM', own: false },
+  { sender: 'Sita', message: 'Thank you Priya! Will do.', time: '10:51 AM', own: false },
+  { sender: 'Rekha', message: 'Has anyone tried applying for the new SHG loan?', time: '10:52 AM', own: false },
+  { sender: 'You', message: 'Yes, I did last week. It was approved quickly.', time: '10:54 AM', own: true },
+  { sender: 'Lata', message: 'Oh nice! What documents did you submit?', time: '10:56 AM', own: false },
+  { sender: 'You', message: 'Only Aadhaar, PAN, and SHG certificate.', time: '10:58 AM', own: true },
+  { sender: 'Meena', message: 'That’s simple. I’ll try too.', time: '10:59 AM', own: false },
+  { sender: 'Priya', message: 'Make sure your SHG details are updated before applying.', time: '11:01 AM', own: false },
+  { sender: 'Sita', message: 'Yes, I updated mine yesterday.', time: '11:02 AM', own: false },
+  { sender: 'Rekha', message: 'We should plan a local exhibition for our handmade products.', time: '11:05 AM', own: false },
+  { sender: 'Lata', message: 'Great idea! We can do it before Diwali.', time: '11:07 AM', own: false },
+  { sender: 'You', message: 'Count me in. I’ll bring my handmade bags.', time: '11:08 AM', own: true },
+  { sender: 'Priya', message: 'Perfect! Let’s start listing everyone’s products.', time: '11:10 AM', own: false },
+  { sender: 'Sita', message: 'I’ll sell pickles and papad.', time: '11:11 AM', own: false },
+  { sender: 'Rekha', message: 'I’ll bring home-decor crafts.', time: '11:13 AM', own: false },
+  { sender: 'Lata', message: 'We’ll need banners and tables. Who can arrange?', time: '11:15 AM', own: false },
+  { sender: 'You', message: 'I can talk to the panchayat office about space.', time: '11:17 AM', own: true },
+  { sender: 'Priya', message: 'Good idea! They usually help SHGs.', time: '11:18 AM', own: false },
+  { sender: 'Meena', message: 'Can we also invite the NGO from last time?', time: '11:19 AM', own: false },
+  { sender: 'Rekha', message: 'Yes, they helped us get good buyers.', time: '11:20 AM', own: false },
+  { sender: 'Sita', message: 'Who will manage the event budget?', time: '11:21 AM', own: false },
+  { sender: 'Lata', message: 'Let’s make a small committee of three.', time: '11:22 AM', own: false },
+  { sender: 'You', message: 'I can handle finance and record expenses.', time: '11:24 AM', own: true },
+  { sender: 'Priya', message: 'I’ll help with publicity and posters.', time: '11:25 AM', own: false },
+  { sender: 'Meena', message: 'I’ll manage invitations.', time: '11:26 AM', own: false },
+  { sender: 'Rekha', message: 'Great teamwork everyone!', time: '11:27 AM', own: false },
+  { sender: 'Sita', message: 'When should we finalize the date?', time: '11:28 AM', own: false },
+  { sender: 'You', message: 'How about the first week of November?', time: '11:30 AM', own: true },
+  { sender: 'Priya', message: 'Works for me.', time: '11:31 AM', own: false },
+  { sender: 'Lata', message: 'Same here.', time: '11:32 AM', own: false },
+  { sender: 'Meena', message: 'Okay, confirmed.', time: '11:33 AM', own: false },
+  { sender: 'Rekha', message: 'We should also post about it in the app’s community section.', time: '11:34 AM', own: false },
+  { sender: 'You', message: 'Yes, I’ll make the announcement today.', time: '11:35 AM', own: true },
+  { sender: 'Sita', message: 'Can we get Digital Didi to promote it too?', time: '11:36 AM', own: false },
+  { sender: 'Priya', message: 'Good idea! I’ll message support.', time: '11:37 AM', own: false },
+  { sender: 'Lata', message: 'Let’s also take group photos for social media.', time: '11:38 AM', own: false },
+  { sender: 'You', message: 'Definitely! We’ll inspire more women to join.', time: '11:40 AM', own: true },
+  { sender: 'Rekha', message: 'Feeling proud of our progress 💪', time: '11:41 AM', own: false },
+  { sender: 'Sita', message: 'Yes, we’ve come a long way together.', time: '11:42 AM', own: false },
+  { sender: 'Priya', message: 'Thank you everyone! Let’s keep growing.', time: '11:44 AM', own: false },
+  { sender: 'You', message: 'Always! Together we rise 🙌', time: '11:45 AM', own: true }
+],
+
+  notifications: [
+    { id: 1, title: 'Loan EMI Due', content: 'Your next EMI of ₹850 is due on Nov 15', time: '2 hours ago', icon: '💰', type: 'warning' },
+    { id: 2, title: 'Saving Reminder', content: 'Don\'t forget your monthly saving of ₹500', time: '1 day ago', icon: '💳', type: 'info' },
+    { id: 3, title: 'New Learning Module', content: 'Check out our new lesson on Digital Payments', time: '2 days ago', icon: '📚', type: 'info' }
+  ],
+  speech: {
+    speaking: false,
+    paused: false,
+    queue: [],
+    currentUtterance: null
+  },
+  currentLoanTab: 'eligibility'
+};
+
+// ===== DOM Elements =====
+const elements = {
+  screens: {
+    dashboard: document.getElementById('dashboardScreen'),
+    loan: document.getElementById('loanScreen'),
+    learn: document.getElementById('learnScreen'),
+    community: document.getElementById('communityScreen'),
+    groups: document.getElementById('groupsScreen'),
+    chat: document.getElementById('chatScreen')
+  },
+  navItems: document.querySelectorAll('.nav-item'),
+  balanceAmount: document.getElementById('balanceAmount'),
+  contributionCount: document.getElementById('contributionCount'),
+  groupTotal: document.getElementById('groupTotal'),
+  transactionList: document.getElementById('transactionList'),
+  lessonList: document.getElementById('lessonList'),
+  communityGroups: document.getElementById('communityGroups'),
+  voicePanel: document.getElementById('voicePanel'),
+  voiceFab: document.getElementById('voiceFab'),
+  closeVoiceBtn: document.getElementById('closeVoiceBtn'),
+  waveform: document.getElementById('waveform'),
+  transcript: document.getElementById('transcript'),
+  toast: document.getElementById('toast'),
+  loanForm: document.getElementById('loanForm'),
+  // Modals
+  settingsModal: document.getElementById('settingsModal'),
+  notificationsModal: document.getElementById('notificationsModal'),
+  recordTransactionModal: document.getElementById('recordTransactionModal'),
+  // Buttons
+  notificationBtn: document.getElementById('notificationBtn'),
+  settingsBtn: document.getElementById('settingsBtn'),
+  recordFab: document.getElementById('recordFab'),
+  // Loan tabs
+  loanTabs: document.querySelectorAll('.tab-btn'),
+  // Chat elements
+  chatMessages: document.getElementById('chatMessages'),
+  chatInput: document.getElementById('chatInput'),
+  sendMessage: document.getElementById('sendMessage')
+};
+
+// ===== Utility Functions =====
+function showToast(message, type = '') {
+  const toast = elements.toast;
+  toast.textContent = message;
+  toast.className = `toast ${type}`;
+  setTimeout(() => toast.classList.add('show'), 10);
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function formatCurrency(amount) {
+  return `₹${Math.abs(amount).toLocaleString('en-IN')}`;
+}
+
+function getInitial(name) {
+  return name.charAt(0).toUpperCase();
+}
+
+function generateTransactionHash() {
+  const chars = '0123456789abcdef';
+  let result = '0x';
+  for (let i = 0; i < 16; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+function generateTransactionId() {
+  return 'TXN' + String(Math.floor(Math.random() * 1000)).padStart(3, '0');
+}
+
+// ===== Modal Functions =====
+function showModal(modalElement) {
+  modalElement.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function hideModal(modalElement) {
+  modalElement.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// ===== Render Functions =====
+function renderTransactions() {
+  elements.transactionList.innerHTML = state.transactions.map(tx => `
+    <div class="transaction-item">
+      <div class="transaction-icon ${tx.positive ? 'positive' : 'negative'}">
+        ${tx.positive ? '↑' : '↓'}
+      </div>
+      <div class="transaction-info">
+        <div class="transaction-type">${tx.type}</div>
+        <div class="transaction-date">${tx.date}</div>
+        <div class="transaction-hash">Hash: ${tx.hash}</div>
+      </div>
+      <div class="transaction-amount ${tx.positive ? 'positive' : 'negative'}">
+        ${tx.positive ? '+' : ''}${formatCurrency(tx.amount)}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderLessons() {
+  elements.lessonList.innerHTML = state.lessons.map(lesson => `
+    <div class="lesson-card" data-lesson-id="${lesson.id}">
+      <div class="lesson-icon">${lesson.icon}</div>
+      <div class="lesson-info">
+        <div class="lesson-title">${lesson.title}</div>
+        <div class="lesson-duration">${lesson.duration} audio lesson</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Add click listeners
+  document.querySelectorAll('.lesson-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const lessonId = parseInt(card.dataset.lessonId);
+      const lesson = state.lessons.find(l => l.id === lessonId);
+      if (lesson) {
+        speakText(lesson.content);
+        showToast(`Playing: ${lesson.title}`, 'success');
+        // Show modal with lesson details
+        document.getElementById('lessonModalTitle').textContent = lesson.title;
+        document.getElementById('lessonModalDuration').textContent = `Duration: ${lesson.duration}`;
+        document.getElementById('lessonModalText').textContent = lesson.content;
+        showModal(document.getElementById('lessonModal'));
+      }
+    });
+  });
+}
+
+function renderCommunityGroups() {
+  const container = elements.communityGroups;
+  container.innerHTML = '';
+
+  state.communityGroups.forEach(group => {
+    const div = document.createElement('div');
+    div.classList.add('community-btn');
+    div.innerHTML = `
+      <div class="community-avatar">${group.avatar}</div>
+      <div class="community-name">${group.name}</div>
+    `;
+    div.addEventListener('click', () => {
+      // When clicked, go straight to chat
+      state.currentGroup = group;
+      document.getElementById('chatGroupName').textContent = group.name;
+      document.getElementById('chatGroupMembers').textContent = `${group.members} members`;
+      switchScreen('chat');
+    });
+    container.appendChild(div);
+  });
+}
+
+
+function renderGroupPosts() {
+  document.getElementById('groupPosts').innerHTML = state.communityPosts.map(post => `
+    <div class="post-card" onclick="switchScreen('chat')">
+      <div class="post-header">
+        <div class="post-avatar">${post.initial}</div>
+        <div class="post-author">
+          <div class="post-name">${post.name}</div>
+          <div class="post-time">${post.time}</div>
+        </div>
+      </div>
+      <div class="post-content">${post.content}</div>
+    </div>
+  `).join('');
+}
+
+function renderChatMessages() {
+  elements.chatMessages.innerHTML = state.chatMessages.map(msg => `
+    <div class="message ${msg.own ? 'own' : ''}">
+      <div class="message-bubble">
+        ${!msg.own ? `<strong>${msg.sender}:</strong> ` : ''}${msg.message}
+      </div>
+    </div>
+  `).join('');
+  elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+}
+
+function renderNotifications() {
+  document.getElementById('notificationsList').innerHTML = state.notifications.map(notification => `
+    <div class="notification-item">
+      <div class="notification-icon">${notification.icon}</div>
+      <div class="notification-content">
+        <div class="notification-title">${notification.title}</div>
+        <div class="notification-time">${notification.time}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function updateDashboard() {
+  elements.balanceAmount.textContent = formatCurrency(state.currentUser.totalSavings);
+  elements.contributionCount.textContent = state.currentUser.contributions;
+  elements.groupTotal.textContent = '₹8,500'; // This would come from group data
+  document.getElementById('userName').textContent = `Welcome, ${state.currentUser.name.split(' ')[0]}`;
+}
+
+// ===== Navigation =====
+function switchScreen(screenName) {
+
+    
+  // Hide all screens
+  Object.values(elements.screens).forEach(screen => {
+    screen.classList.remove('active');
+  });
+
+  // Show selected screen
+  const targetScreen = elements.screens[screenName];
+  if (targetScreen) {
+    targetScreen.classList.add('active');
+  }
+
+  // Update nav items only for main screens
+  if (['dashboard', 'loan', 'learn', 'community'].includes(screenName)) {
+    elements.navItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.dataset.screen === screenName) {
+        item.classList.add('active');
+      }
+    });
+  }
+
+  // Special handling for specific screens
+  if (screenName === 'groups') {
+    renderGroupPosts();
+  } else if (screenName === 'chat') {
+    if (state.currentGroup) {
+      document.getElementById('chatGroupName').textContent = state.currentGroup.name;
+      document.getElementById('chatGroupMembers').textContent = 'Online now';
+    }
+    renderChatMessages();
+  }
+
+  // Announce via voice
+  const announcements = {
+    dashboard: 'Dashboard. Your current savings balance is ' + formatCurrency(state.currentUser.totalSavings),
+    loan: 'Loan section. Your eligibility score is 85. You can apply up to fifteen thousand rupees.',
+    learn: 'Learning hub. Choose a lesson to improve your financial knowledge.',
+    community: 'Community board. Select a group to join conversations.',
+    groups: `${state.currentGroup?.name || 'Group'} discussion board.`,
+    chat: `${state.currentGroup?.name || 'Group'} chat. You can send messages here.`
+  };
+
+  if (announcements[screenName]) {
+    speakText(announcements[screenName]);
+  }
+}
+
+// Navigation event listeners
+elements.navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const screenName = item.dataset.screen;
+    switchScreen(screenName);
+  });
+});
+
+// Back button event listeners
+document.getElementById('backToCommunity').addEventListener('click', () => {
+  switchScreen('community');
+});
+
+document.getElementById('backToGroups').addEventListener('click', () => {
+  switchScreen('community');
+});
+
+// ===== Loan Tabs =====
+function switchLoanTab(tabName) {
+  // Update tab buttons
+  elements.loanTabs.forEach(tab => {
+    tab.classList.remove('active');
+    if (tab.dataset.tab === tabName) {
+      tab.classList.add('active');
+    }
+  });
+
+  // Show/hide tab content
+  document.getElementById('eligibilityTab').style.display = tabName === 'eligibility' ? 'block' : 'none';
+  document.getElementById('dashboardTab').style.display = tabName === 'dashboard' ? 'block' : 'none';
+  document.getElementById('applyTab').style.display = tabName === 'apply' ? 'block' : 'none';
+
+  state.currentLoanTab = tabName;
+}
+
+elements.loanTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    switchLoanTab(tab.dataset.tab);
+  });
+});
+
+// ===== Voice Assistant =====
+const synth = window.speechSynthesis;
+
+function createWaveBars() {
+  const bars = 20;
+  elements.waveform.innerHTML = '';
+  for (let i = 0; i < bars; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'wave-bar';
+    bar.style.height = '10px';
+    elements.waveform.appendChild(bar);
+  }
+}
+
+function animateWaveform() {
+  const bars = elements.waveform.querySelectorAll('.wave-bar');
+  let interval = setInterval(() => {
+    if (!state.speech.speaking || state.speech.paused) {
+      clearInterval(interval);
+      bars.forEach(bar => bar.style.height = '10px');
+      return;
+    }
+    bars.forEach((bar, i) => {
+      const height = Math.random() * 40 + 10;
+      bar.style.height = `${height}px`;
+    });
+  }, 100);
+}
+
+function appendTranscript(text) {
+  const p = document.createElement('p');
+  p.textContent = text;
+  p.style.marginBottom = '8px';
+  elements.transcript.appendChild(p);
+  elements.transcript.scrollTop = elements.transcript.scrollHeight;
+}
+
+// === Speech Control ===
+const speech = window.speechSynthesis;
+
+ // must be declared FIRST
+
+function speakText(text) {
+  if (!('speechSynthesis' in window)) {
+    showToast('Speech not supported in this browser', 'error');
+    appendTranscript(`Didi (text): ${text}`);
+    return;
+  }
+
+  // ✅ Stop any ongoing speech before starting a new one
+  if (speech.speaking || speech.pending) {
+    speech.cancel();
+  }
+
+  if (!text || typeof text !== 'string' || !text.trim()) return;
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-IN';
+  utterance.rate = 1;
+  utterance.pitch = 1;
+  utterance.volume = 1;
+
+  utterance.onstart = () => {
+    state.speech.speaking = true;
+    state.speech.currentUtterance = utterance;
+    animateWaveform();
+    appendTranscript(`Didi: ${text}`);
+  };
+
+  utterance.onend = () => {
+    state.speech.speaking = false;
+    state.speech.currentUtterance = null;
+  };
+
+  utterance.onerror = () => {
+    state.speech.speaking = false;
+    // showToast('Speech error Hi', 'error');
+  };
+
+  speech.speak(utterance);
+}
+
+function pauseSpeech() {
+  if (speech.speaking && !speech.paused && state.speech.currentUtterance) {
+    speech.pause();
+    state.speech.paused = true;
+    showToast('Paused');
+  } else {
+    showToast('Nothing to pause', 'error');
+  }
+}
+
+function resumeSpeech() {
+  if (speech.paused && state.speech.currentUtterance) {
+    speech.resume();
+    state.speech.paused = false;
+    showToast('Resumed');
+    animateWaveform();
+  } else {
+    showToast('Nothing to resume', 'error');
+  }
+}
+
+function stopSpeech() {
+  if ((speech.speaking || speech.pending) && state.speech.currentUtterance) {
+    speech.cancel();
+    state.speech.speaking = false;
+    state.speech.paused = false;
+    state.speech.currentUtterance = null;
+    showToast('Stopped');
+  } else {
+    showToast('Nothing to stop', 'error');
+  }
+}
+
+
+
+// Voice panel controls
+elements.voiceFab.addEventListener('click', () => {
+  elements.voicePanel.classList.add('open');
+  speakText('Hello ' + state.currentUser.name.split(' ')[0] + '. I am Digital Didi, your voice assistant. How can I help you today?');
+});
+
+elements.closeVoiceBtn.addEventListener('click', () => {
+  elements.voicePanel.classList.remove('open');
+//   stopSpeech();
+});
+
+document.getElementById('speakBalanceBtn').addEventListener('click', () => {
+  speakText(`Your current savings balance is ${formatCurrency(state.currentUser.totalSavings)}. You have made ${state.currentUser.contributions} contributions.`);
+});
+
+document.getElementById('speakEligibilityBtn').addEventListener('click', () => {
+  speakText('Your loan eligibility score is 85 out of 100. You can apply for a loan up to fifteen thousand rupees at 8 percent annual interest.');
+});
+
+document.getElementById('speakCustomBtn').addEventListener('click', () => {
+  const text = document.getElementById('customTextInput').value.trim();
+  if (text) {
+    speakText(text);
+    document.getElementById('customTextInput').value = '';
+  } else {
+    showToast('Please enter text to speak');
+  }
+});
+
+document.getElementById('pauseBtn').addEventListener('click', pauseSpeech);
+document.getElementById('resumeBtn').addEventListener('click', resumeSpeech);
+document.getElementById('stopBtn').addEventListener('click', stopSpeech);
+
+document.getElementById('askDidiBtn').addEventListener('click', () => {
+  elements.voicePanel.classList.add('open');
+  speakText('Hello ' + state.currentUser.name.split(' ')[0] + '. How can I help you today?');
+});
+
+// ===== Modal Event Listeners =====
+
+// Lesson Close Modal
+document.getElementById('closeLessonModal').addEventListener('click', () => {
+  hideModal(document.getElementById('lessonModal'));
+  if (window.speechSynthesis) {
+    window.speechSynthesis.cancel(); // stop speaking
+  }
+});
+
+
+
+// Settings Modal
+elements.settingsBtn.addEventListener('click', () => {
+  showModal(elements.settingsModal);
+});
+
+document.getElementById('closeSettings').addEventListener('click', () => {
+  hideModal(elements.settingsModal);
+});
+
+document.getElementById('saveSettings').addEventListener('click', () => {
+  const name = document.getElementById('settingsName').value;
+  const phone = document.getElementById('settingsPhone').value;
+  const language = document.getElementById('settingsLanguage').value;
+  
+  state.currentUser.name = name;
+  state.currentUser.phone = phone;
+  
+  updateDashboard();
+  showToast('Settings saved successfully!', 'success');
+  hideModal(elements.settingsModal);
+});
+
+// Notifications Modal
+elements.notificationBtn.addEventListener('click', () => {
+  renderNotifications();
+  showModal(elements.notificationsModal);
+});
+
+document.getElementById('closeNotifications').addEventListener('click', () => {
+  hideModal(elements.notificationsModal);
+});
+
+// Record Transaction Modal
+elements.recordFab.addEventListener('click', () => {
+  document.getElementById('transactionDate').value = new Date().toISOString().split('T')[0];
+  showModal(elements.recordTransactionModal);
+});
+
+document.getElementById('closeRecordTransaction').addEventListener('click', () => {
+  hideModal(elements.recordTransactionModal);
+});
+
+document.getElementById('recordTransactionForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const type = document.querySelector('input[name="transactionType"]:checked').value;
+  const amount = parseInt(document.getElementById('transactionAmount').value);
+  const date = document.getElementById('transactionDate').value;
+  const notes = document.getElementById('transactionNotes').value;
+  
+  const newTransaction = {
+    id: generateTransactionId(),
+    type: type === 'saving' ? 'Saving' : 'Repayment',
+    amount: type === 'saving' ? amount : -amount,
+    date: date,
+    status: 'Completed',
+    hash: generateTransactionHash(),
+    positive: type === 'saving'
+  };
+  
+  state.transactions.unshift(newTransaction);
+  
+  if (type === 'saving') {
+    state.currentUser.totalSavings += amount;
+    state.currentUser.contributions++;
+  }
+  
+  updateDashboard();
+  renderTransactions();
+  
+  showToast('Transaction recorded successfully!', 'success');
+  hideModal(elements.recordTransactionModal);
+  document.getElementById('recordTransactionForm').reset();
+  
+  speakText(`Transaction recorded. ${type === 'saving' ? 'Saved' : 'Repaid'} ${formatCurrency(amount)}.`);
+});
+
+// ===== Chat Functionality =====
+elements.sendMessage.addEventListener('click', sendChatMessage);
+elements.chatInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    sendChatMessage();
+  }
+});
+
+function sendChatMessage() {
+  const message = elements.chatInput.value.trim();
+  if (message) {
+    state.chatMessages.push({
+      sender: 'You',
+      message: message,
+      time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+      own: true
+    });
+    
+    elements.chatInput.value = '';
+    renderChatMessages();
+    
+    // Simulate response after 2 seconds
+    setTimeout(() => {
+      const responses = [
+        'That sounds great!',
+        'Thanks for sharing.',
+        'I agree with you.',
+        'Good point!',
+        'Yaaa!',
+        'That\'s helpful information.'
+      ];
+      
+      state.chatMessages.push({
+        sender: 'Priya',
+        message: responses[Math.floor(Math.random() * responses.length)],
+        time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+        own: false
+      });
+      
+      renderChatMessages();
+    }, 2000);
+  }
+}
+
+// ===== Loan Application =====
+elements.loanForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const amount = parseInt(document.getElementById('loanAmountInput').value);
+  const purpose = document.getElementById('loanPurposeInput').value;
+
+  if (amount > 15000) {
+    showToast('Maximum loan amount is ₹15,000', 'error');
+    speakText('Sorry, your maximum loan amount is fifteen thousand rupees based on your eligibility.');
+    return;
+  }
+
+  if (amount < 1000) {
+    showToast('Minimum loan amount is ₹1,000', 'error');
+    return;
+  }
+
+  // Simulate smart contract evaluation
+  showToast('Loan application submitted successfully!', 'success');
+  speakText(`Your loan application for ${formatCurrency(amount)} has been submitted for ${purpose}. Our smart contract system will process it automatically within 24 hours.`);
+  
+  elements.loanForm.reset();
+});
+
+document.getElementById('applyLoanBtn').addEventListener('click', () => {
+  switchScreen('loan');
+  switchLoanTab('apply');
+});
+
+// ===== Initialize App =====
+function initApp() {
+  updateDashboard();
+  renderTransactions();
+  renderLessons();
+  renderCommunityGroups();
+  createWaveBars();
+
+  // Set current date for transaction form
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('transactionDate').value = today;
+
+  // Welcome message
+  setTimeout(() => {
+    showToast('Welcome to Sahbhaag!', 'success');
+  }, 500);
+
+  // Close modals when clicking outside
+  document.querySelectorAll('.modal-overlay').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        hideModal(modal);
+      }
+    });
+  });
+}
+
+// Start the app
+initApp();
+</script>
+</body>
+</html>
