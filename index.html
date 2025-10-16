@@ -834,7 +834,7 @@
   .record-fab {
     position: fixed;
     bottom: 160px;
-    right: 20px;
+    right: 24px;
     width: 56px;
     height: 56px;
     border-radius: 16px;
@@ -850,6 +850,9 @@
     align-items: center;
     justify-content: center;
   }
+
+
+  
 
   .record-fab:active {
     transform: scale(0.95);
@@ -1136,6 +1139,7 @@
       <div class="header-title">
         <h1>Sahbhaag</h1>
         <p id="userName">Welcome, Sunita</p>
+        <p style="font-size:12px; opacity:0.8;">UID: SHG-0008-MU</p>
       </div>
     </div>
     <div class="header-actions">
@@ -1585,13 +1589,98 @@ const state = {
     ]
   },
   lessons: [
-  { id: 1, title: 'Understanding Savings', duration: '5 min', icon: '📊', content: 'Saving money regularly helps you build a financial cushion for emergencies and future goals.' },
-  { id: 2, title: 'Smart Borrowing Tips', duration: '7 min', icon: '💰', content: 'Only borrow what you need and can repay. Understand interest and repayment terms before borrowing.' },
-  { id: 3, title: 'Avoiding Financial Fraud', duration: '6 min', icon: '⚠️', content: 'Never share your OTP or password with anyone. Be cautious of schemes promising unrealistic returns.' },
-  { id: 4, title: 'Growing Your Business', duration: '8 min', icon: '📈', content: 'Keep records, start small, reinvest profits, and focus on customer satisfaction.' },
-  { id: 5, title: 'Banking Basics', duration: '5 min', icon: '🏦', content: 'Know the difference between savings and current accounts. Use fixed deposits and recurring deposits to save.' },
-  { id: 6, title: 'Digital Payments Made Easy', duration: '6 min', icon: '📱', content: 'Learn how to send and receive money safely using UPI apps like Google Pay or PhonePe. Always verify the receiver’s name before sending money.' }
- ],
+  {
+    id: 1,
+    title: 'Understanding Savings',
+    duration: '5 min',
+    icon: '📊',
+    content: `Saving money regularly helps you build a financial cushion for emergencies and future goals.
+    It’s good to start small — even ₹10 or ₹50 saved daily can grow into a useful amount. 
+    Always set clear goals for your savings like school fees, a new machine for business, or family health expenses. 
+    Keep your money in a safe place such as a bank, self-help group, or post office account rather than at home.`
+  },
+  {
+    id: 2,
+    title: 'Smart Borrowing Tips',
+    duration: '7 min',
+    icon: '💰',
+    content: `Borrowing can help you grow your business or handle urgent needs, but it should be done wisely.
+    Only borrow what you can repay on time, and always understand the interest rate and repayment schedule before taking a loan. 
+    Avoid borrowing for celebrations or luxury items — use credit only for income-generating purposes. 
+    Keep a record of your loans and repayments to maintain good credit discipline.`
+  },
+  {
+    id: 3,
+    title: 'Avoiding Financial Fraud',
+    duration: '6 min',
+    icon: '⚠️',
+    content: `Financial frauds are becoming common, especially through phone calls and messages.
+    Never share your OTP, PIN, or password with anyone — not even a bank employee. 
+    Be alert against messages promising lottery wins, free gifts, or unrealistic profits.
+    If you ever suspect fraud, contact your bank or local authorities immediately and change your PIN.`
+  },
+  {
+    id: 4,
+    title: 'Growing Your Business',
+    duration: '8 min',
+    icon: '📈',
+    content: `A business grows with planning, patience, and customer trust.
+    Keep a record of income and expenses to understand your profits clearly. 
+    Start small but think big — reinvest part of your earnings to expand gradually.
+    Focus on product quality, on-time delivery, and treating customers well; word-of-mouth will bring more business.`
+  },
+  {
+    id: 5,
+    title: 'Banking Basics',
+    duration: '5 min',
+    icon: '🏦',
+    content: `Banks help you keep your money safe and earn interest.
+    A savings account is for personal savings, while a current account is used for frequent business transactions.
+    You can also open a fixed deposit (FD) or recurring deposit (RD) to save regularly and earn better returns.
+    Using bank services also helps you build a credit record for future loans.`
+  },
+  {
+    id: 6,
+    title: 'Digital Payments Made Easy',
+    duration: '6 min',
+    icon: '📱',
+    content: `Digital payments save time and reduce risk of carrying cash.
+    UPI apps like Google Pay, PhonePe, and Paytm let you send and receive money instantly.
+    Before paying, always verify the receiver’s name and never scan QR codes sent by strangers.
+    Use strong PINs and keep your phone locked when not in use.`
+  },
+  {
+    id: 7,
+    title: 'Understanding Health Insurance',
+    duration: '7 min',
+    icon: '🩺',
+    content: `Health insurance protects you from large hospital expenses during illness or accidents.
+    By paying a small premium regularly, you and your family can get financial help for hospital bills.
+    Schemes like Ayushman Bharat and Biju Swasthya Kalyan Yojana offer free or low-cost coverage.
+    Keep your health card safe and carry it when visiting hospitals.`
+  },
+  {
+    id: 8,
+    title: 'How to Stay Safe from Frauds',
+    duration: '7 min',
+    icon: '🔒',
+    content: `Fraudsters often pretend to be from banks, government offices, or lottery companies.
+    Do not click on unknown links or give access to your phone to strangers.
+    Always verify messages and calls — if unsure, contact the official helpline.
+    Remember: if an offer sounds too good to be true, it probably is!`
+  },
+  {
+    id: 9,
+    title: 'Budgeting for a Better Life',
+    duration: '6 min',
+    icon: '📝',
+    content: `Budgeting means planning how you use your income each month.
+    List your essential expenses like food, school, and electricity, then plan savings before spending on extras.
+    A written budget helps reduce waste and builds discipline.
+    Involve your family members in planning — everyone should know the value of money.`
+  }
+],
+
   communityGroups: [
   { id: 1, name: 'Jeevika Mahila Sangh', members: 58, region: 'Bihar', language: 'Hindi', description: 'Collective of rural women improving livelihoods through dairy and farming', avatar: 'J' },
   { id: 2, name: 'Asha Mahila Group', members: 42, region: 'Madhya Pradesh', language: 'Hindi', description: 'Asha workers and local women supporting health awareness and microfinance', avatar: 'A' },
@@ -1611,56 +1700,85 @@ const state = {
     { name: 'Meena Patel', initial: 'M', time: '2 days ago', content: 'Digital Didi is so helpful! She explains everything in simple language.' }
   ],
   currentGroup: null,
-chatMessages: [
-  { sender: 'Priya', message: 'Hello everyone! How is your business going?', time: '10:30 AM', own: false },
-  { sender: 'You', message: 'Going well! Just got a new order yesterday.', time: '10:35 AM', own: true },
-  { sender: 'Rekha', message: 'That\'s great! I also had good sales this week.', time: '10:40 AM', own: false },
-  { sender: 'Sita', message: 'Same here, festival season is helping a lot.', time: '10:42 AM', own: false },
-  { sender: 'Lata', message: 'Did anyone attend the new training session from Digital Didi?', time: '10:45 AM', own: false },
-  { sender: 'You', message: 'Yes! It was about managing savings. Very useful.', time: '10:47 AM', own: true },
-  { sender: 'Meena', message: 'I missed it. Is there a recording?', time: '10:48 AM', own: false },
-  { sender: 'Priya', message: 'Yes, check the app under Learning → Recorded Sessions.', time: '10:49 AM', own: false },
-  { sender: 'Sita', message: 'Thank you Priya! Will do.', time: '10:51 AM', own: false },
-  { sender: 'Rekha', message: 'Has anyone tried applying for the new SHG loan?', time: '10:52 AM', own: false },
-  { sender: 'You', message: 'Yes, I did last week. It was approved quickly.', time: '10:54 AM', own: true },
-  { sender: 'Lata', message: 'Oh nice! What documents did you submit?', time: '10:56 AM', own: false },
-  { sender: 'You', message: 'Only Aadhaar, PAN, and SHG certificate.', time: '10:58 AM', own: true },
-  { sender: 'Meena', message: 'That’s simple. I’ll try too.', time: '10:59 AM', own: false },
-  { sender: 'Priya', message: 'Make sure your SHG details are updated before applying.', time: '11:01 AM', own: false },
-  { sender: 'Sita', message: 'Yes, I updated mine yesterday.', time: '11:02 AM', own: false },
-  { sender: 'Rekha', message: 'We should plan a local exhibition for our handmade products.', time: '11:05 AM', own: false },
-  { sender: 'Lata', message: 'Great idea! We can do it before Diwali.', time: '11:07 AM', own: false },
-  { sender: 'You', message: 'Count me in. I’ll bring my handmade bags.', time: '11:08 AM', own: true },
-  { sender: 'Priya', message: 'Perfect! Let’s start listing everyone’s products.', time: '11:10 AM', own: false },
-  { sender: 'Sita', message: 'I’ll sell pickles and papad.', time: '11:11 AM', own: false },
-  { sender: 'Rekha', message: 'I’ll bring home-decor crafts.', time: '11:13 AM', own: false },
-  { sender: 'Lata', message: 'We’ll need banners and tables. Who can arrange?', time: '11:15 AM', own: false },
-  { sender: 'You', message: 'I can talk to the panchayat office about space.', time: '11:17 AM', own: true },
-  { sender: 'Priya', message: 'Good idea! They usually help SHGs.', time: '11:18 AM', own: false },
-  { sender: 'Meena', message: 'Can we also invite the NGO from last time?', time: '11:19 AM', own: false },
-  { sender: 'Rekha', message: 'Yes, they helped us get good buyers.', time: '11:20 AM', own: false },
-  { sender: 'Sita', message: 'Who will manage the event budget?', time: '11:21 AM', own: false },
-  { sender: 'Lata', message: 'Let’s make a small committee of three.', time: '11:22 AM', own: false },
-  { sender: 'You', message: 'I can handle finance and record expenses.', time: '11:24 AM', own: true },
-  { sender: 'Priya', message: 'I’ll help with publicity and posters.', time: '11:25 AM', own: false },
-  { sender: 'Meena', message: 'I’ll manage invitations.', time: '11:26 AM', own: false },
-  { sender: 'Rekha', message: 'Great teamwork everyone!', time: '11:27 AM', own: false },
-  { sender: 'Sita', message: 'When should we finalize the date?', time: '11:28 AM', own: false },
-  { sender: 'You', message: 'How about the first week of November?', time: '11:30 AM', own: true },
-  { sender: 'Priya', message: 'Works for me.', time: '11:31 AM', own: false },
-  { sender: 'Lata', message: 'Same here.', time: '11:32 AM', own: false },
-  { sender: 'Meena', message: 'Okay, confirmed.', time: '11:33 AM', own: false },
-  { sender: 'Rekha', message: 'We should also post about it in the app’s community section.', time: '11:34 AM', own: false },
-  { sender: 'You', message: 'Yes, I’ll make the announcement today.', time: '11:35 AM', own: true },
-  { sender: 'Sita', message: 'Can we get Digital Didi to promote it too?', time: '11:36 AM', own: false },
-  { sender: 'Priya', message: 'Good idea! I’ll message support.', time: '11:37 AM', own: false },
-  { sender: 'Lata', message: 'Let’s also take group photos for social media.', time: '11:38 AM', own: false },
-  { sender: 'You', message: 'Definitely! We’ll inspire more women to join.', time: '11:40 AM', own: true },
-  { sender: 'Rekha', message: 'Feeling proud of our progress 💪', time: '11:41 AM', own: false },
-  { sender: 'Sita', message: 'Yes, we’ve come a long way together.', time: '11:42 AM', own: false },
-  { sender: 'Priya', message: 'Thank you everyone! Let’s keep growing.', time: '11:44 AM', own: false },
-  { sender: 'You', message: 'Always! Together we rise 🙌', time: '11:45 AM', own: true }
+  chatMessages: [
+  { sender: 'Priya', message: 'Good morning everyone! 🌞 How’s business this week?', time: '9:00 AM', own: false },
+  { sender: 'You', message: 'Morning! Things are picking up — I got new customers from the weekly market.', time: '9:03 AM', own: true },
+  { sender: 'Rekha', message: 'That’s awesome! I sold out all my handmade soaps yesterday.', time: '9:05 AM', own: false },
+  { sender: 'Lata', message: 'Wow Rekha, your packaging looked so nice! It really stands out.', time: '9:06 AM', own: false },
+  { sender: 'Rekha', message: 'Thank you! Used simple recycled paper and a ribbon. Cost-effective too 😊', time: '9:08 AM', own: false },
+  { sender: 'Sita', message: 'Has anyone joined the new digital literacy workshop by Digital Didi?', time: '9:10 AM', own: false },
+  { sender: 'You', message: 'Yes! I attended. They taught about using UPI safely and making online payments.', time: '9:12 AM', own: true },
+  { sender: 'Meena', message: 'Oh nice! I want to learn that too. Is it available in Odia?', time: '9:14 AM', own: false },
+  { sender: 'Priya', message: 'Yes, they provide Odia subtitles and audio also.', time: '9:16 AM', own: false },
+  { sender: 'Lata', message: 'I wish they also do one on social media marketing. It’ll help small businesses like ours.', time: '9:17 AM', own: false },
+  { sender: 'You', message: 'Great idea. Maybe we can request it through the app.', time: '9:19 AM', own: true },
+  { sender: 'Rekha', message: 'By the way, does anyone know when the new SHG loan scheme opens?', time: '9:21 AM', own: false },
+  { sender: 'Priya', message: 'Next Monday. The NGO team will come to our village office.', time: '9:22 AM', own: false },
+  { sender: 'Sita', message: 'Let’s all prepare our documents in advance.', time: '9:23 AM', own: false },
+  { sender: 'You', message: 'Yes — I’ll help anyone who needs assistance with forms.', time: '9:25 AM', own: true },
+  { sender: 'Meena', message: 'Thank you! You always help us with online forms 😊', time: '9:27 AM', own: false },
+  { sender: 'Lata', message: 'Hey, any updates on our local exhibition?', time: '9:30 AM', own: false },
+  { sender: 'Rekha', message: 'Venue confirmed — panchayat hall from 5th to 7th November.', time: '9:32 AM', own: false },
+  { sender: 'You', message: 'Perfect! I’ll design a poster and share it here.', time: '9:34 AM', own: true },
+  { sender: 'Priya', message: 'Don’t forget to include “Supported by WORD” on the banner.', time: '9:36 AM', own: false },
+  { sender: 'Sita', message: 'Yes! Let’s make it colorful and eye-catching.', time: '9:37 AM', own: false },
+  { sender: 'Lata', message: 'Also, we can invite the local bank officer to inaugurate it.', time: '9:38 AM', own: false },
+  { sender: 'Rekha', message: 'Good idea. That might help with visibility for our loan applications.', time: '9:40 AM', own: false },
+  { sender: 'You', message: 'I’ll send an invite letter tomorrow morning.', time: '9:41 AM', own: true },
+  { sender: 'Meena', message: 'Should we keep an entry fee for stalls?', time: '9:43 AM', own: false },
+  { sender: 'Priya', message: 'Maybe ₹50 per stall — to cover decorations and tea expenses.', time: '9:44 AM', own: false },
+  { sender: 'Sita', message: 'Agreed! That’s reasonable.', time: '9:45 AM', own: false },
+  { sender: 'Lata', message: 'I’ll bring extra chairs from the school.', time: '9:47 AM', own: false },
+  { sender: 'Rekha', message: 'I’ll talk to the women’s cooperative about a sponsorship.', time: '9:49 AM', own: false },
+  { sender: 'You', message: 'Amazing teamwork ladies 💪', time: '9:50 AM', own: true },
+  { sender: 'Priya', message: 'We should also record a small video about SHG success stories.', time: '9:52 AM', own: false },
+  { sender: 'Sita', message: 'Yes! We can ask Digital Didi to share it on their page.', time: '9:53 AM', own: false },
+  { sender: 'Meena', message: 'This will inspire so many others.', time: '9:54 AM', own: false },
+  { sender: 'You', message: 'Let’s script it together after the meeting tomorrow.', time: '9:56 AM', own: true },
+  { sender: 'Rekha', message: 'By the way, any health camp happening this month?', time: '10:00 AM', own: false },
+  { sender: 'Priya', message: 'Yes, government health camp on the 15th — free BP and sugar tests.', time: '10:01 AM', own: false },
+  { sender: 'Sita', message: 'Nice! I’ll bring my mother too.', time: '10:03 AM', own: false },
+  { sender: 'Lata', message: 'They’ll also give info about health insurance schemes.', time: '10:04 AM', own: false },
+  { sender: 'Meena', message: 'Good reminder. Many of us still haven’t claimed Ayushman cards.', time: '10:05 AM', own: false },
+  { sender: 'You', message: 'We can help each other fill the forms at the center.', time: '10:07 AM', own: true },
+  { sender: 'Rekha', message: 'Digital Didi can make a tutorial on how to check card status online!', time: '10:08 AM', own: false },
+  { sender: 'Priya', message: 'I’ll suggest that to the app support team.', time: '10:09 AM', own: false },
+  { sender: 'Sita', message: 'Has anyone tried using the new accounting feature in the app?', time: '10:10 AM', own: false },
+  { sender: 'You', message: 'Yes, I did! It tracks daily sales and expenses easily.', time: '10:12 AM', own: true },
+  { sender: 'Lata', message: 'Oh wow! That will help during loan renewal time.', time: '10:13 AM', own: false },
+  { sender: 'Rekha', message: 'I’m planning to try it this week.', time: '10:14 AM', own: false },
+  { sender: 'Meena', message: 'Same here. I always lose track of small cash sales.', time: '10:16 AM', own: false },
+  { sender: 'Priya', message: 'Once you start using it, it becomes a habit!', time: '10:18 AM', own: false },
+  { sender: 'Sita', message: 'Good to know! We should do a short peer session to learn together.', time: '10:19 AM', own: false },
+  { sender: 'You', message: 'Yes — we can schedule that for Sunday morning.', time: '10:20 AM', own: true },
+  { sender: 'Rekha', message: 'Perfect timing — no market rush that day.', time: '10:21 AM', own: false },
+  { sender: 'Lata', message: 'I’ll bring tea and snacks ☕', time: '10:23 AM', own: false },
+  { sender: 'Meena', message: 'I’ll bring homemade laddus 😋', time: '10:24 AM', own: false },
+  { sender: 'Priya', message: 'Then it’s a plan! Sunday 10 AM at the SHG office.', time: '10:25 AM', own: false },
+  { sender: 'You', message: 'Deal 👍', time: '10:26 AM', own: true },
+  { sender: 'Rekha', message: 'By the way, the kids’ school fee reminder came today — budgeting time again!', time: '10:30 AM', own: false },
+  { sender: 'Lata', message: 'Same here. I started keeping 10% of each week’s sales for school expenses.', time: '10:31 AM', own: false },
+  { sender: 'Meena', message: 'Smart idea, Lata! I’ll follow that too.', time: '10:32 AM', own: false },
+  { sender: 'You', message: 'Digital Didi has a budgeting lesson — it really helped me manage my monthly cash flow.', time: '10:34 AM', own: true },
+  { sender: 'Priya', message: 'That’s in the Learning Hub right?', time: '10:35 AM', own: false },
+  { sender: 'You', message: 'Yes — “Budgeting for a Better Life.” Highly recommend!', time: '10:37 AM', own: true },
+  { sender: 'Sita', message: 'I love how we’re all learning and growing together 💜', time: '10:40 AM', own: false },
+  { sender: 'Rekha', message: 'Same! Feels like a real sisterhood.', time: '10:41 AM', own: false },
+  { sender: 'Lata', message: 'We should plan a picnic once the exhibition ends 😄', time: '10:42 AM', own: false },
+  { sender: 'Priya', message: 'Yes! Somewhere near the waterfall.', time: '10:43 AM', own: false },
+  { sender: 'Meena', message: 'I’ll bring food!', time: '10:45 AM', own: false },
+  { sender: 'You', message: 'And I’ll handle transport arrangements 🚐', time: '10:46 AM', own: true },
+  { sender: 'Rekha', message: 'Haha perfect! Can’t wait.', time: '10:47 AM', own: false },
+  { sender: 'Sita', message: 'Before that, let’s make this exhibition our best event ever 💪', time: '10:49 AM', own: false },
+  { sender: 'Priya', message: 'Agreed! Let’s show how strong women entrepreneurs can be.', time: '10:50 AM', own: false },
+  { sender: 'You', message: 'Together we rise 🙌', time: '10:51 AM', own: true },
+  { sender: 'Lata', message: 'Always! 💐', time: '10:52 AM', own: false },
+  { sender: 'Meena', message: 'Proud to be part of this group ❤️', time: '10:54 AM', own: false },
+  { sender: 'Rekha', message: 'Let’s keep inspiring more women across Koraput 🌾', time: '10:55 AM', own: false },
+  { sender: 'Priya', message: 'Absolutely — Digital Didi community rocks! 🚀', time: '10:56 AM', own: false },
+  { sender: 'You', message: 'Always moving forward together 🌸', time: '10:58 AM', own: true }
 ],
+
 
   notifications: [
     { id: 1, title: 'Loan EMI Due', content: 'Your next EMI of ₹850 is due on Nov 15', time: '2 hours ago', icon: '💰', type: 'warning' },
@@ -1908,6 +2026,18 @@ function switchScreen(screenName) {
     }
     renderChatMessages();
   }
+
+
+// ===== Hide FABs and Didi on Chat Screen =====
+const fabButtons = [elements.voiceFab, elements.recordFab];
+if (screenName === 'chat') {
+  fabButtons.forEach(btn => btn.style.display = 'none');
+  elements.voicePanel.style.display = 'none'; // Hide Digital Didi panel
+} else {
+  fabButtons.forEach(btn => btn.style.display = 'flex');
+  elements.voicePanel.style.display = ''; // Show again when not in chat
+}
+
 
   // Announce via voice
   const announcements = {
