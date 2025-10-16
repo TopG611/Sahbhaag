@@ -1137,8 +1137,7 @@
     <div class="header-left">
       <div class="logo">🔐</div>
       <div class="header-title">
-        <h1>Sunita</h1>
-        <!-- <p id="userName">Welcome, Sunita</p> -->
+        <h1 id="userName">Sunita</h1>
         <p style="font-size:12px; opacity:0.8;">UID: SHG-0008-MU</p>
       </div>
     </div>
@@ -1988,7 +1987,7 @@ function updateDashboard() {
   elements.balanceAmount.textContent = formatCurrency(state.currentUser.totalSavings);
   elements.contributionCount.textContent = state.currentUser.contributions;
   elements.groupTotal.textContent = '₹8,500'; // This would come from group data
-  document.getElementById('userName').textContent = `Welcome, ${state.currentUser.name.split(' ')[0]}`;
+  document.getElementById('userName').textContent = ` ${state.currentUser.name.split(' ')[0]}`;
 }
 
 // ===== Navigation =====
