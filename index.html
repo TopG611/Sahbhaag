@@ -538,6 +538,21 @@
   justify-items: center;
 }
 
+
+/* --- Fix for mobile: extra breathing room at bottom of community grid --- */
+.community-grid {
+  padding-bottom: 90px; /* creates space above bottom nav */
+}
+
+/* Optional: smaller padding on large screens */
+@media (min-width: 768px) {
+  .community-grid {
+    padding-bottom: 40px;
+  }
+}
+
+
+
 .community-btn {
   width: 130px;
   display: flex;
