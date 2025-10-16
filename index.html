@@ -530,57 +530,56 @@
     color: var(--text-muted);
   }
 
-  /* Community Posts & Groups */
 /* Community grid layout */
 .community-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 20px;
   justify-items: center;
 }
 
 .community-btn {
-  background: var(--card-bg);
-  border: 2px solid var(--accent);
-  border-radius: 50%;
-  width: 110px;
-  height: 110px;
+  width: 130px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.community-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .community-avatar {
-  background: var(--accent);
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   margin-bottom: 6px;
+}
+
+.community-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.community-btn:hover .community-avatar-img {
+  transform: scale(1.05);
 }
 
 .community-name {
   font-size: 13px;
   font-weight: 600;
-  color: var(--text);
+  color: #fff;
   text-align: center;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 8px;
+  max-width: 100%;
+  word-break: break-word;
+  line-height: 1.2;
 }
+
 
 
   .post-card, .group-card {
@@ -1681,16 +1680,16 @@ const state = {
 ],
 
   communityGroups: [
-  { id: 1, name: 'Annapurna Sangh', members: 58, region: 'Bihar', language: 'Hindi', description: 'Collective of rural women improving livelihoods through dairy and farming', avatar: 'J' },
-  { id: 2, name: 'Sakhi Swasthya', members: 42, region: 'Madhya Pradesh', language: 'Hindi', description: 'Asha workers and local women supporting health awareness and microfinance', avatar: 'A' },
-  { id: 3, name: 'Sutradhar Sangh', members: 63, region: 'Rajasthan', language: 'Hindi', description: 'Empowering rural women through handicrafts and community savings', avatar: 'S' },
-  { id: 4, name: 'Hathkari Network', members: 49, region: 'Jharkhand', language: 'Hindi', description: 'Rural women uniting for handloom weaving and local entrepreneurship', avatar: 'D' },
-  { id: 5, name: 'Udyam Veer', members: 53, region: 'Maharashtra', language: 'Marathi', description: 'Women farmers working together on organic farming and local produce markets', avatar: 'K' },
-  { id: 6, name: 'Nari Pragati', members: 73, region: 'All India', language: 'Multilingual', description: 'Connecting women from rural areas for support and learning', avatar: 'R' },
-  { id: 7, name: 'Odisha Self Help Group', members: 54, region: 'Odisha', language: 'Hindi', description: 'Rural women from Bihar working together for small savings and business', avatar: 'B' },
-  { id: 8, name: 'Maa Ki Mamta', members: 47, region: 'Tamil Nadu', language: 'Tamil', description: 'Rural women supporting each other through small enterprises and savings', avatar: 'A' },
-  { id: 9, name: 'Pragati Mahila Mandal', members: 61, region: 'Chhattisgarh', language: 'Hindi', description: 'Village women promoting thrift, education, and empowerment through local projects', avatar: 'P' },
-  { id: 10, name: 'Rang and Resham', members: 36, region: 'Uttar Pradesh', language: 'Hindi', description: 'Women’s self-help group supporting tailoring and small savings in local villages', avatar: 'S' }
+  { id: 1, name: 'Annapurna Sangh', members: 58, region: 'Bihar', language: 'Hindi', description: 'Collective of rural women improving livelihoods through dairy and farming', image: 'com1.jpg' },
+  { id: 2, name: 'Sakhi Swasthya', members: 42, region: 'Madhya Pradesh', language: 'Hindi', description: 'Asha workers and local women supporting health awareness and microfinance', image: 'com2.avif' },
+  { id: 3, name: 'Sutradhar Sangh', members: 63, region: 'Rajasthan', language: 'Hindi', description: 'Empowering rural women through handicrafts and community savings', image: 'com3.jpg' },
+  { id: 4, name: 'Hathkari Network', members: 49, region: 'Jharkhand', language: 'Hindi', description: 'Rural women uniting for handloom weaving and local entrepreneurship', image: 'com4.png' },
+  { id: 5, name: 'Udyam Veer', members: 53, region: 'Maharashtra', language: 'Marathi', description: 'Women farmers working together on organic farming and local produce markets', image: 'com5.jpeg' },
+  { id: 6, name: 'Nari Pragati', members: 73, region: 'All India', language: 'Multilingual', description: 'Connecting women from rural areas for support and learning', image: 'com6.jpg' },
+  { id: 7, name: 'Odisha Self Help Group', members: 54, region: 'Odisha', language: 'Hindi', description: 'Rural women from Bihar working together for small savings and business', image: 'com7.jpg' },
+  { id: 8, name: 'Maa Ki Mamta', members: 47, region: 'Tamil Nadu', language: 'Tamil', description: 'Rural women supporting each other through small enterprises and savings', image: 'com8.jpg' },
+  { id: 9, name: 'Pragati Mahila Mandal', members: 61, region: 'Chhattisgarh', language: 'Hindi', description: 'Village women promoting thrift, education, and empowerment through local projects', image: 'com9.jpg' },
+  { id: 10, name: 'Rang and Resham', members: 36, region: 'Uttar Pradesh', language: 'Hindi', description: 'Women’s self-help group supporting tailoring and small savings in local villages', image: 'com10.jpg' }
  ],
 
   communityPosts: [
@@ -1929,20 +1928,33 @@ function renderCommunityGroups() {
   state.communityGroups.forEach(group => {
     const div = document.createElement('div');
     div.classList.add('community-btn');
+
+    // Build avatar HTML safely
+    let avatarHTML = '';
+    if (group.image) {
+      avatarHTML = '<img src="' + group.image + '" alt="' + group.name + '" class="community-avatar-img">';
+    } else {
+      avatarHTML = '<span>' + (group.avatar || '') + '</span>';
+    }
+
+    // Full button layout
     div.innerHTML = `
-      <div class="community-avatar">${group.avatar}</div>
+      <div class="community-avatar">${avatarHTML}</div>
       <div class="community-name">${group.name}</div>
     `;
+
+    // Click event → open chat
     div.addEventListener('click', () => {
-      // When clicked, go straight to chat
       state.currentGroup = group;
       document.getElementById('chatGroupName').textContent = group.name;
-      document.getElementById('chatGroupMembers').textContent = `${group.members} members`;
+      document.getElementById('chatGroupMembers').textContent = group.members + ' members';
       switchScreen('chat');
     });
+
     container.appendChild(div);
   });
 }
+
 
 
 function renderGroupPosts() {
